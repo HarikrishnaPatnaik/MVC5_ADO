@@ -1,0 +1,45 @@
+﻿@model ICollection<MVCDemo.Models.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Employee Details</h2>
+<div>
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+                <th>Salary</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var emp in Model)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.FirstName</td>
+                    <td>@emp.LastName</td>
+                    <td>@emp.Email</td>
+                    <td>@emp.Salary</td>
+                    <td>@Html.ActionLink("Edit", "Update", "Employee", new { @id = emp.Id }, htmlAttributes: new { @class = "btn btn-primary" }) &nbsp; <i class="bi bi-box-arrow-in-down"></i> </td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Employee", new { @id = emp.Id }, htmlAttributes: new { @class = "btn btn-danger" }) &nbsp; <i class="bi bi-trash"></i></td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <span class="alert-danger">Records not found.</span>
+    }
+</div>
+
+<div>
+    @{
+        //Html.RenderPartial("_EmployeeIndexPartial");
+    }
+</div>
+
